@@ -9,6 +9,30 @@
     // this is used through out this script - @todo: might be able to take off window 
     // made this global to this function wrapper so two event handlers can user it
     this.secretNumber;
+
+    this.generateRandomNumber = function() {
+      return parseInt(Math.random() * 100, 10) + 1;
+    };
+
+    this.resetGame = function() {
+      if (this.gameOver) {
+        this.gameOver = false;
+        this.secretNumber = this.generateRandomNumber();
+        return true;
+      } else {
+        return false;
+      }
+    };
+
+    this.endGame = function() {
+      if (!this.gameOver) {
+        this.gameOver = true;
+        this.secretNumber = undefined;
+        return true;
+      } else {
+        return false;
+      }
+    }
     
     // this is a helper function to validate the user input
     this.validateInputForConstraints = function(userInput) {
@@ -45,6 +69,9 @@
       // how could we test this?
       return success;
     };
+
+
+
   };
 
   window.bl = new BusinessLogic();
